@@ -11,10 +11,13 @@ class ShoetheHorse < Gosu::Window
     @height = 43
     @velocity_x = 5
     @velocity_y = 5
+    @shoe_image = Gosu::Image.new('horseshoe.png')
+    @hit = 0
   end
 
   def draw
     @image.draw(@x - @width / 2, @y - @height / 2, 1)
+    @shoe_image.draw(mouse_x - 40, mouse_y - 10, 1)
   end
 
   def update
