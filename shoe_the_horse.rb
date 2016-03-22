@@ -14,6 +14,8 @@ class ShoetheHorse < Gosu::Window
     @visible = 0
     @shoe_image = Gosu::Image.new('horseshoe.png')
     @hit = 0
+    @font = Gosu::Font.new(30)
+    @score = 0
   end
 
   def update
@@ -23,6 +25,7 @@ class ShoetheHorse < Gosu::Window
     @velocity_y *= -1 if @y - @height / 2 > 600 || @y - @height / 2 < 0
     @visible -= 1
     @visible = 30 if @visible < -10 && rand < 0.01
+    
   end 
 
   def draw
@@ -39,15 +42,18 @@ class ShoetheHorse < Gosu::Window
       end 
     draw_quad(0, 0, c, 800, 0, c, 800, 600, c, 0, 600, c)
     @hit = 0
+    @font.draw(@score.to_s, 700, 20, 2)
         
   end
 
   def button_down(id)
     if (id == Gosu::MsLeft)
       if Gosu.distance(mouse_x, mouse_y, @x, @y) < 50 && @visible >= 0
-        @hit = 1
-      else
         @hit = -1
+        @score += 5
+      else
+        @hit = 1
+        @score -= 1
       end
     end
   end
