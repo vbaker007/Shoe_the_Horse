@@ -50,6 +50,7 @@ class ShoetheHorse < Gosu::Window
     @font.draw(@score.to_s, 700, 20, 2)
     unless @playing
       @font.draw('Game Over', 300, 300, 3)
+      @font.draw('Press the Space to Play Again', 175, 350, 3)
       @visible = 20
     end
   end
